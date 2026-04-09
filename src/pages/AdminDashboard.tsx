@@ -23,7 +23,8 @@ export default function AdminDashboard() {
       const token = localStorage.getItem('admin_token');
       if (!token) throw new Error('No authentication token found');
 
-      const response = await fetch('http://localhost:5000/api/contact', {
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+      const response = await fetch(`${apiBaseUrl}/api/contact`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
