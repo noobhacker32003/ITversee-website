@@ -32,6 +32,10 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     setLoading(true);
     setError(null);
 
+    // Set a timeout for the fetch request
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), 8000); // 8 second timeout
+
     try {
       const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
       const response = await fetch(`${apiBaseUrl}/api/contact`, {
@@ -40,7 +44,10 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
+        signal: controller.signal
       });
+
+      clearTimeout(id);
 
       if (response.ok) {
         setSuccess(true);
@@ -52,11 +59,16 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
         }, 3000);
       } else {
         const data = await response.json();
-        setError(data.message || 'Something went wrong. Please try again.');
+        setError(data.message || 'The server returned an error. Please try again.');
       }
     } catch (err) {
-      setError('Could not connect to the server. Please check your connection.');
-      console.error(err);
+      clearTimeout(id);
+      if ((err as Error).name === 'AbortError') {
+        setError('Request timed out. The server might be waking up or slow.');
+      } else {
+        setError('Could not connect to the API. Please ensure VITE_API_BASE_URL is set in Vercel.');
+      }
+      console.error('Submission error:', err);
     } finally {
       setLoading(false);
     }
