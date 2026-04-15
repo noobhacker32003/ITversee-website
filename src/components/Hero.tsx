@@ -72,7 +72,7 @@ export default function Hero({ onOpenContact }: HeroProps) {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="flex flex-col md:flex-row items-center justify-center gap-6"
         >
-          <button 
+          <button
             onClick={onOpenContact}
             className="group px-8 py-4 bg-accent text-primary font-bold rounded-full flex items-center gap-2 hover:scale-105 transition-transform neon-glow"
           >

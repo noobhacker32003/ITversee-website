@@ -37,7 +37,8 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     const id = setTimeout(() => controller.abort(), 8000); // 8 second timeout
 
     try {
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+      const isProd = import.meta.env.PROD;
+      const apiBaseUrl = isProd ? '' : (import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000');
       const response = await fetch(`${apiBaseUrl}/api/contact`, {
         method: 'POST',
         headers: {
@@ -134,7 +135,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
               {/* Right Side - Form */}
               <div className="md:col-span-3 p-8 md:p-10 flex flex-col justify-center">
                 {success ? (
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     className="text-center py-10"
@@ -212,7 +213,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
                     {error && <p className="text-red-400 text-[10px] mt-2 ml-1">{error}</p>}
 
-                    <button 
+                    <button
                       disabled={loading}
                       className="w-full py-4 bg-accent text-primary font-bold rounded-xl flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-all neon-glow mt-4 disabled:opacity-50"
                     >

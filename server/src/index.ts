@@ -27,25 +27,19 @@ app.use(express.json());
 app.use('/api/contact', contactRoutes);
 app.use('/api/auth', authRoutes);
 
-// Serve Static Assets in Production
-if (process.env.NODE_ENV === 'production') {
-    // Set static folder
-    const distPath = path.join(__dirname, '../../dist');
-    app.use(express.static(distPath));
-
-    // Any route that is not an API route, serve the index.html
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(distPath, 'index.html'));
-    });
-} else {
-    // Health check endpoint for dev
-    app.get('/health', (req, res) => {
-        res.json({ status: 'ok', message: 'ITversee Server is running in DEV mode' });
-    });
-}
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+    res.json({ status: 'ok', message: 'ITversee Server is running' });
+});
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-    console.log(`\n🚀 Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
-});
+// Only start the server locally, Vercel will export the app
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`\n🚀 Server running in local dev mode on port ${PORT}`);
+    });
+}
+
+// Export for Vercel serverless
+export default app;

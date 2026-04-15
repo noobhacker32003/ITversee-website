@@ -16,7 +16,8 @@ export default function AdminLogin() {
     setError(null);
 
     try {
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+      const isProd = import.meta.env.PROD;
+      const apiBaseUrl = isProd ? '' : (import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000');
       const response = await fetch(`${apiBaseUrl}/api/auth/login`, {
         method: 'POST',
         headers: {
