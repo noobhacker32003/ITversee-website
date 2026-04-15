@@ -15,18 +15,18 @@ export default function About() {
           >
             <div className="relative z-10 rounded-3xl overflow-hidden border border-white/10">
               <img
-                src="https://picsum.photos/seed/agency/800/1000"
+                src="/british-merchant.png"
                 alt="ITversee Team"
                 className="w-full h-auto"
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent" />
             </div>
-            
+
             {/* Decorative elements */}
             <div className="absolute -top-10 -left-10 w-40 h-40 bg-accent/20 rounded-full blur-3xl" />
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-accent-secondary/20 rounded-full blur-3xl" />
-            
+
             <div className="absolute bottom-10 left-10 glass p-6 rounded-2xl border-white/10 z-20">
               <div className="text-4xl font-bold text-accent mb-1">5+</div>
               <div className="text-sm text-gray-400">Years of Innovation</div>
@@ -44,7 +44,7 @@ export default function About() {
               Building Digital <br />
               <span className="text-accent">Experiences That Scale</span>
             </h2>
-            
+
             <p className="text-gray-400 text-lg mb-8 leading-relaxed">
               At ITversee, we are more than just a digital agency. We are your strategic partners in innovation. Our mission is to empower businesses with cutting-edge technology and exceptional design that drives real growth.
             </p>

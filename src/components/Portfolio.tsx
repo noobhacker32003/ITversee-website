@@ -1,43 +1,35 @@
 import { motion } from 'motion/react';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 
 const projects = [
   {
-    title: 'NeoBank App',
-    category: 'Fintech',
-    image: 'https://picsum.photos/seed/fintech/800/600',
-    tags: ['React', 'Node.js', 'Web3'],
+    title: 'British Merchants',
+    category: 'Corporate Trading',
+    image: '/british-merchant.png',
+    tags: ['React', 'Next.js', 'Tailwind'],
+    link: 'https://britishmerchants.com/'
   },
   {
-    title: 'E-Commerce Pro',
-    category: 'E-Commerce',
-    image: 'https://picsum.photos/seed/shop/800/600',
-    tags: ['Next.js', 'Shopify', 'Tailwind'],
+    title: 'EezzyMart',
+    category: 'E-Commerce Marketplace',
+    image: '/Eezzymart.png',
+    tags: ['React', 'Node.js', 'MongoDB'],
+    link: 'https://eezzymart.com/'
   },
   {
-    title: 'HealthTrack AI',
-    category: 'Healthcare',
-    image: 'https://picsum.photos/seed/health/800/600',
-    tags: ['Python', 'React Native', 'AI'],
+    title: 'Pristine Security',
+    category: 'Security Services',
+    image: '/Pristine.png',
+    tags: ['React', 'Frontend', 'Framer Motion'],
+    link: 'https://pristine-security-service-limited.vercel.app/'
   },
   {
-    title: 'Creative Studio',
-    category: 'Portfolio',
-    image: 'https://picsum.photos/seed/creative/800/600',
-    tags: ['Framer', 'Three.js', 'GSAP'],
-  },
-  {
-    title: 'SecureCloud',
-    category: 'SaaS',
-    image: 'https://picsum.photos/seed/saas/800/600',
-    tags: ['AWS', 'Kubernetes', 'Go'],
-  },
-  {
-    title: 'SocialConnect',
-    category: 'Social Media',
-    image: 'https://picsum.photos/seed/social/800/600',
-    tags: ['Firebase', 'React', 'Redux'],
-  },
+    title: 'Book a Bunk',
+    category: 'Hospitality Booking',
+    image: '/BookABunk.png',
+    tags: ['React', 'Firebase', 'Tailwind'],
+    link: 'https://book-a-bunk-client.web.app/'
+  }
 ];
 
 export default function Portfolio() {
@@ -85,22 +77,22 @@ export default function Portfolio() {
               transition={{ delay: index * 0.1 }}
               className="group relative rounded-3xl overflow-hidden border border-white/10"
             >
-              <div className="aspect-[4/3] overflow-hidden">
+              <div className="aspect-[4/3] overflow-hidden bg-primary">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-110 group-hover:opacity-30 transition-all duration-700"
                   referrerPolicy="no-referrer"
                 />
               </div>
-              
-              <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
+
+              <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
                 <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                   <span className="text-accent text-sm font-bold uppercase tracking-widest mb-2 block">
                     {project.category}
                   </span>
                   <h3 className="text-2xl font-bold mb-4">{project.title}</h3>
-                  
+
                   <div className="flex flex-wrap gap-2 mb-6">
                     {project.tags.map((tag) => (
                       <span key={tag} className="px-3 py-1 bg-white/10 rounded-full text-xs font-medium">
@@ -108,14 +100,18 @@ export default function Portfolio() {
                       </span>
                     ))}
                   </div>
-                  
+
                   <div className="flex gap-4">
-                    <button className="p-3 bg-accent text-primary rounded-full hover:scale-110 transition-transform">
-                      <ExternalLink className="w-5 h-5" />
-                    </button>
-                    <button className="p-3 glass border-white/10 text-white rounded-full hover:scale-110 transition-transform">
-                      <Github className="w-5 h-5" />
-                    </button>
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-3 bg-accent text-primary rounded-full hover:scale-110 transition-transform"
+                      >
+                        <ExternalLink className="w-5 h-5" />
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
