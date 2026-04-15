@@ -3,9 +3,9 @@ import { fileURLToPath } from 'url';
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import connectDB from './config/db.ts';
-import contactRoutes from './routes/contactRoutes.ts';
-import authRoutes from './routes/authRoutes.ts';
+import connectDB from './config/db';
+import contactRoutes from './routes/contactRoutes';
+import authRoutes from './routes/authRoutes';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
