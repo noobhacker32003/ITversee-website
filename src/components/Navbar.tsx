@@ -27,77 +27,141 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
   }, []);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'py-4 glass' : 'py-6 bg-transparent'
-      }`}
-    >
-      <div className="container mx-auto px-6 flex items-center justify-between">
-        <a href="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 bg-accent rounded-xl flex items-center justify-center neon-glow group-hover:rotate-12 transition-transform">
-            <Rocket className="text-primary w-6 h-6" />
-          </div>
-          <span className="text-2xl font-display font-bold tracking-tighter">
-            IT<span className="text-accent">versee</span>
-          </span>
-        </a>
-
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-sm font-medium text-gray-400 hover:text-accent transition-colors"
-            >
-              {link.name}
-            </a>
-          ))}
-          <button 
-            onClick={onOpenContact}
-            className="px-6 py-2.5 bg-accent text-primary font-bold rounded-full hover:scale-105 transition-transform neon-glow"
+    <nav className="fixed top-0 left-0 w-full z-50">
+      <motion.div
+        animate={{
+          backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0)',
+          backdropFilter: isScrolled ? 'blur(12px)' : 'blur(0px)',
+          borderColor: isScrolled ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0)',
+        }}
+        transition={{ duration: 0.3 }}
+        className="border-b border-transparent"
+      >
+        <div className={`container mx-auto px-6 flex items-center justify-between transition-all duration-300 ${
+          isScrolled ? 'py-4' : 'py-6'
+        }`}>
+          {/* Logo */}
+          <motion.a
+            href="/"
+            className="flex items-center gap-2 group"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            Get Started
-          </button>
-        </div>
+            <motion.div
+              className="w-10 h-10 bg-accent rounded-xl flex items-center justify-center neon-glow"
+              whileHover={{ rotate: 12, scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <motion.div animate={{ rotate: 360 }} transition={{ duration: 20, repeat: Infinity }}>
+                <Rocket className="text-primary w-6 h-6" />
+              </motion.div>
+            </motion.div>
+            <span className="text-2xl font-display font-bold tracking-tighter">
+              IT<span className="text-accent">versee</span>
+            </span>
+          </motion.a>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          className="md:hidden text-white"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X /> : <Menu />}
-        </button>
-      </div>
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-8">
+            {navLinks.map((link, index) => (
+              <motion.a
+                key={link.name}
+                href={link.href}
+                className="text-sm font-medium text-gray-400 relative group"
+                whileHover={{ color: '#00F5A0' }}
+                transition={{ duration: 0.3 }}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.05 }}
+              >
+                {link.name}
+                <motion.div
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-accent to-accent-secondary"
+                  initial={{ scaleX: 0 }}
+                  whileHover={{ scaleX: 1 }}
+                  transition={{ duration: 0.3 }}
+                  style={{ originX: 0 }}
+                />
+              </motion.a>
+            ))}
+            <motion.button
+              onClick={onOpenContact}
+              whileHover={{
+                scale: 1.05,
+                boxShadow: '0 0 30px rgba(0, 245, 160, 0.5)',
+              }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: navLinks.length * 0.05 }}
+              className="px-6 py-2.5 bg-accent text-primary font-bold rounded-full neon-glow transition-all"
+            >
+              Get Started
+            </motion.button>
+          </div>
+
+          {/* Mobile Menu Toggle */}
+          <motion.button
+            className="md:hidden text-white"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={isMobileMenuOpen ? 'close' : 'open'}
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 90, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                {isMobileMenuOpen ? <X /> : <Menu />}
+              </motion.div>
+            </AnimatePresence>
+          </motion.button>
+        </div>
+      </motion.div>
 
       {/* Mobile Nav */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 w-full glass md:hidden py-6 px-6 flex flex-col gap-4"
+            initial={{ opacity: 0, y: -20, height: 0 }}
+            animate={{ opacity: 1, y: 0, height: 'auto' }}
+            exit={{ opacity: 0, y: -20, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="absolute top-full left-0 w-full glass md:hidden border-b border-white/10 overflow-hidden"
           >
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-lg font-medium text-gray-400 hover:text-accent"
-                onClick={() => setIsMobileMenuOpen(false)}
+            <div className="py-6 px-6 flex flex-col gap-4">
+              {navLinks.map((link, index) => (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  className="text-lg font-medium text-gray-400 hover:text-accent transition-colors py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                  whileHover={{ x: 10, color: '#00F5A0' }}
+                >
+                  {link.name}
+                </motion.a>
+              ))}
+              <motion.button
+                onClick={() => {
+                  onOpenContact();
+                  setIsMobileMenuOpen(false);
+                }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navLinks.length * 0.05 }}
+                className="w-full py-4 bg-accent text-primary font-bold rounded-xl neon-glow mt-4 transition-all"
               >
-                {link.name}
-              </a>
-            ))}
-            <button 
-              onClick={() => {
-                onOpenContact();
-                setIsMobileMenuOpen(false);
-              }}
-              className="w-full py-4 bg-accent text-primary font-bold rounded-xl neon-glow"
-            >
-              Get Started
-            </button>
+                Get Started
+              </motion.button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
