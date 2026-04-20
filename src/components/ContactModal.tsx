@@ -26,6 +26,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [focusedField, setFocusedField] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -88,141 +89,307 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
             onClick={onClose}
             className="absolute inset-0 bg-primary/80 backdrop-blur-md"
           />
 
           {/* Modal Content */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            initial={{ opacity: 0, scale: 0.85, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            exit={{ opacity: 0, scale: 0.85, y: 30 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
             className="relative w-full max-w-2xl glass rounded-[2.5rem] overflow-hidden border-white/10 shadow-2xl"
           >
-            <button
+            {/* Close Button */}
+            <motion.button
               onClick={onClose}
+              whileHover={{ scale: 1.1, rotate: 90 }}
+              whileTap={{ scale: 0.95 }}
               className="absolute top-6 right-6 p-2 glass rounded-full hover:bg-white/10 transition-colors z-10"
             >
               <X className="w-5 h-5" />
-            </button>
+            </motion.button>
 
             <div className="grid grid-cols-1 md:grid-cols-5 min-h-[500px]">
               {/* Left Side - Info */}
-              <div className="hidden md:flex md:col-span-2 bg-accent/5 p-10 flex-col justify-between border-r border-white/5">
-                <div>
+              <motion.div
+                className="hidden md:flex md:col-span-2 bg-accent/5 p-10 flex-col justify-between border-r border-white/5"
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+              >
+                <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
                   <h3 className="text-3xl font-display font-bold mb-4">Let's <span className="text-accent">Connect</span></h3>
                   <p className="text-gray-400 text-sm leading-relaxed">
                     Fill out the form and our team will get back to you within 24 hours.
                   </p>
-                </div>
+                </motion.div>
 
-                <div className="space-y-6">
-                  <div className="flex items-center gap-4 text-sm text-gray-400">
-                    <div className="w-10 h-10 glass rounded-xl flex items-center justify-center text-accent">
+                <motion.div className="space-y-6" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
+                  <motion.div
+                    className="flex items-center gap-4 text-sm text-gray-400"
+                    whileHover={{ x: 5 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <motion.div
+                      className="w-10 h-10 glass rounded-xl flex items-center justify-center text-accent"
+                      whileHover={{ scale: 1.2, rotate: 10 }}
+                    >
                       <Mail className="w-5 h-5" />
-                    </div>
+                    </motion.div>
                     <span>hello@itversee.com</span>
-                  </div>
-                  <div className="flex items-center gap-4 text-sm text-gray-400">
-                    <div className="w-10 h-10 glass rounded-xl flex items-center justify-center text-accent">
+                  </motion.div>
+                  <motion.div
+                    className="flex items-center gap-4 text-sm text-gray-400"
+                    whileHover={{ x: 5 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <motion.div
+                      className="w-10 h-10 glass rounded-xl flex items-center justify-center text-accent"
+                      whileHover={{ scale: 1.2, rotate: 10 }}
+                    >
                       <Phone className="w-5 h-5" />
-                    </div>
+                    </motion.div>
                     <span>+1 (555) 000-0000</span>
-                  </div>
-                </div>
-              </div>
+                  </motion.div>
+                </motion.div>
+              </motion.div>
 
               {/* Right Side - Form */}
-              <div className="md:col-span-3 p-8 md:p-10 flex flex-col justify-center">
+              <motion.div
+                className="md:col-span-3 p-8 md:p-10 flex flex-col justify-center"
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+              >
                 {success ? (
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
+                    initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
+                    transition={{ type: "spring", damping: 20, stiffness: 300 }}
                     className="text-center py-10"
                   >
-                    <div className="w-20 h-20 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-6 neon-glow">
-                      <CheckCircle2 className="text-accent w-10 h-10" />
-                    </div>
-                    <h3 className="text-2xl font-bold mb-2">Message Sent!</h3>
-                    <p className="text-gray-400">Thank you for reaching out. We'll be in touch soon.</p>
+                    <motion.div
+                      className="w-20 h-20 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-6 neon-glow"
+                      animate={{ scale: [0.8, 1.1, 1], rotate: [0, 10, 0] }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <motion.div
+                        animate={{ scale: [0, 1], rotate: [0, 360] }}
+                        transition={{ duration: 0.8 }}
+                      >
+                        <CheckCircle2 className="text-accent w-10 h-10" />
+                      </motion.div>
+                    </motion.div>
+                    <motion.h3
+                      className="text-2xl font-bold mb-2"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 }}
+                    >
+                      Message Sent!
+                    </motion.h3>
+                    <motion.p
+                      className="text-gray-400"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                    >
+                      Thank you for reaching out. We'll be in touch soon.
+                    </motion.p>
                   </motion.div>
                 ) : (
-                  <form className="space-y-4" onSubmit={handleSubmit}>
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500 ml-1">Full Name</label>
+                  <form className="space-y-5" onSubmit={handleSubmit}>
+                    {/* Name Field */}
+                    <motion.div
+                      className="space-y-1"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                    >
+                      <motion.label
+                        className="text-[10px] font-bold uppercase tracking-widest text-gray-500 ml-1 block"
+                        animate={{ color: focusedField === 'name' ? '#00F5A0' : '#9CA3AF' }}
+                      >
+                        Full Name
+                      </motion.label>
                       <div className="relative">
-                        <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
-                        <input
+                        <motion.div
+                          animate={{ color: focusedField === 'name' ? '#00F5A0' : '#9CA3AF' }}
+                          className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4"
+                        >
+                          <User className="w-4 h-4" />
+                        </motion.div>
+                        <motion.input
                           type="text"
                           name="name"
                           required
                           value={formData.name}
                           onChange={handleChange}
+                          onFocus={() => setFocusedField('name')}
+                          onBlur={() => setFocusedField(null)}
                           placeholder="John Doe"
-                          className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-10 pr-4 focus:outline-none focus:border-accent transition-colors text-sm"
+                          whileFocus={{ scale: 1.02 }}
+                          className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-10 pr-4 focus:outline-none focus:border-accent focus:bg-white/10 transition-all text-sm"
                         />
                       </div>
-                    </div>
+                    </motion.div>
 
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500 ml-1">Email Address</label>
+                    {/* Email Field */}
+                    <motion.div
+                      className="space-y-1"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.35 }}
+                    >
+                      <motion.label
+                        className="text-[10px] font-bold uppercase tracking-widest text-gray-500 ml-1 block"
+                        animate={{ color: focusedField === 'email' ? '#00F5A0' : '#9CA3AF' }}
+                      >
+                        Email Address
+                      </motion.label>
                       <div className="relative">
-                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
-                        <input
+                        <motion.div
+                          animate={{ color: focusedField === 'email' ? '#00F5A0' : '#9CA3AF' }}
+                          className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4"
+                        >
+                          <Mail className="w-4 h-4" />
+                        </motion.div>
+                        <motion.input
                           type="email"
                           name="email"
                           required
                           value={formData.email}
                           onChange={handleChange}
+                          onFocus={() => setFocusedField('email')}
+                          onBlur={() => setFocusedField(null)}
                           placeholder="john@example.com"
-                          className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-10 pr-4 focus:outline-none focus:border-accent transition-colors text-sm"
+                          whileFocus={{ scale: 1.02 }}
+                          className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-10 pr-4 focus:outline-none focus:border-accent focus:bg-white/10 transition-all text-sm"
                         />
                       </div>
-                    </div>
+                    </motion.div>
 
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500 ml-1">Service Needed</label>
+                    {/* Service Field */}
+                    <motion.div
+                      className="space-y-1"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4 }}
+                    >
+                      <motion.label
+                        className="text-[10px] font-bold uppercase tracking-widest text-gray-500 ml-1 block"
+                        animate={{ color: focusedField === 'service' ? '#00F5A0' : '#9CA3AF' }}
+                      >
+                        Service Needed
+                      </motion.label>
                       <div className="relative">
-                        <Briefcase className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
-                        <select
+                        <motion.div
+                          animate={{ color: focusedField === 'service' ? '#00F5A0' : '#9CA3AF' }}
+                          className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4"
+                        >
+                          <Briefcase className="w-4 h-4" />
+                        </motion.div>
+                        <motion.select
                           name="service"
                           value={formData.service}
                           onChange={handleChange}
-                          className="w-full bg-primary border border-white/10 rounded-xl py-3 pl-10 pr-4 focus:outline-none focus:border-accent transition-colors text-sm appearance-none cursor-pointer"
+                          onFocus={() => setFocusedField('service')}
+                          onBlur={() => setFocusedField(null)}
+                          whileFocus={{ scale: 1.02 }}
+                          className="w-full bg-primary border border-white/10 rounded-xl py-3 pl-10 pr-4 focus:outline-none focus:border-accent focus:bg-white/10 transition-all text-sm appearance-none cursor-pointer"
                         >
                           {SERVICES.map(s => <option key={s} value={s}>{s}</option>)}
-                        </select>
+                        </motion.select>
                       </div>
-                    </div>
+                    </motion.div>
 
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500 ml-1">Message</label>
+                    {/* Message Field */}
+                    <motion.div
+                      className="space-y-1"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.45 }}
+                    >
+                      <motion.label
+                        className="text-[10px] font-bold uppercase tracking-widest text-gray-500 ml-1 block"
+                        animate={{ color: focusedField === 'message' ? '#00F5A0' : '#9CA3AF' }}
+                      >
+                        Message
+                      </motion.label>
                       <div className="relative">
-                        <MessageSquare className="absolute left-4 top-3 w-4 h-4 text-gray-500" />
-                        <textarea
+                        <motion.div
+                          animate={{ color: focusedField === 'message' ? '#00F5A0' : '#9CA3AF' }}
+                          className="absolute left-4 top-3 w-4 h-4"
+                        >
+                          <MessageSquare className="w-4 h-4" />
+                        </motion.div>
+                        <motion.textarea
                           rows={3}
                           name="message"
                           required
                           value={formData.message}
                           onChange={handleChange}
+                          onFocus={() => setFocusedField('message')}
+                          onBlur={() => setFocusedField(null)}
                           placeholder="Tell us about your project..."
-                          className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-10 pr-4 focus:outline-none focus:border-accent transition-colors resize-none text-sm"
+                          whileFocus={{ scale: 1.02 }}
+                          className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-10 pr-4 focus:outline-none focus:border-accent focus:bg-white/10 transition-all resize-none text-sm"
                         />
                       </div>
-                    </div>
+                    </motion.div>
 
-                    {error && <p className="text-red-400 text-[10px] mt-2 ml-1">{error}</p>}
+                    {/* Error Message */}
+                    <AnimatePresence>
+                      {error && (
+                        <motion.p
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          className="text-red-400 text-[10px] ml-1"
+                        >
+                          {error}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
 
-                    <button
+                    {/* Submit Button */}
+                    <motion.button
+                      type="submit"
                       disabled={loading}
-                      className="w-full py-4 bg-accent text-primary font-bold rounded-xl flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-all neon-glow mt-4 disabled:opacity-50"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="w-full py-4 bg-accent text-primary font-bold rounded-xl flex items-center justify-center gap-2 hover:shadow-lg neon-glow mt-6 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                     >
-                      {loading ? 'Sending...' : 'Send Message'}
-                      <Send className="w-4 h-4" />
-                    </button>
+                      {loading ? (
+                        <>
+                          <motion.div
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 1, repeat: Infinity }}
+                            className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full"
+                          />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          Send Message
+                          <motion.div
+                            animate={{ x: [0, 5, 0] }}
+                            transition={{ duration: 2, repeat: Infinity }}
+                          >
+                            <Send className="w-4 h-4" />
+                          </motion.div>
+                        </>
+                      )}
+                    </motion.button>
                   </form>
                 )}
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>
