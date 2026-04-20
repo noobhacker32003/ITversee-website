@@ -35,7 +35,7 @@ export default function About() {
               className="relative z-10 rounded-3xl overflow-hidden border border-white/10"
             >
               <motion.img
-                src="/british-merchant.png"
+                src="/p1.jpg"
                 alt="ITversee Team"
                 className="w-full h-auto"
                 referrerPolicy="no-referrer"
