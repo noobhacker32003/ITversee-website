@@ -2,10 +2,21 @@ import { motion, useMotionTemplate, useMotionValue } from 'motion/react';
 import { ExternalLink, ArrowUpRight } from 'lucide-react';
 import { useState } from 'react';
 
-const projects = [
+interface Project {
+  title: string;
+  category: string;
+  workType: 'Web' | 'UI/UX' | 'Cybersecurity' | 'Other';
+  image: string;
+  tags: string[];
+  link?: string;
+}
+
+const projects: Project[] = [
+  // Web Projects
   {
     title: 'British Merchants',
     category: 'Corporate Trading',
+    workType: 'Web',
     image: '/british-merchant.png',
     tags: ['React', 'Next.js', 'Tailwind'],
     link: 'https://britishmerchants.com/'
@@ -13,6 +24,7 @@ const projects = [
   {
     title: 'EezzyMart',
     category: 'E-Commerce Marketplace',
+    workType: 'Web',
     image: '/Eezzymart.png',
     tags: ['React', 'Node.js', 'MongoDB'],
     link: 'https://eezzymart.com/'
@@ -20,6 +32,7 @@ const projects = [
   {
     title: 'Pristine Security',
     category: 'Security Services',
+    workType: 'Web',
     image: '/Pristine.png',
     tags: ['React', 'Frontend', 'Framer Motion'],
     link: 'https://pristine-security-service-limited.vercel.app/'
@@ -27,13 +40,82 @@ const projects = [
   {
     title: 'Book a Bunk',
     category: 'Hospitality Booking',
+    workType: 'Web',
     image: '/BookABunk.png',
     tags: ['React', 'Firebase', 'Tailwind'],
     link: 'https://book-a-bunk-client.web.app/'
-  }
+  },
+  // UI/UX Design Projects
+  {
+    title: 'SaaS Dashboard Design',
+    category: 'Product Design',
+    workType: 'UI/UX',
+    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop',
+    tags: ['Figma', 'User Research', 'Prototyping'],
+  },
+  {
+    title: 'Mobile App Interface',
+    category: 'Mobile Design',
+    workType: 'UI/UX',
+    image: 'https://images.unsplash.com/photo-1561565021-8f11f29e74c7?w=800&h=600&fit=crop',
+    tags: ['UI Design', 'Animation', 'Accessibility'],
+  },
+  {
+    title: 'E-Commerce Website Redesign',
+    category: 'Web Design',
+    workType: 'UI/UX',
+    image: 'https://images.unsplash.com/photo-1561050503-140f4e95f5e7?w=800&h=600&fit=crop',
+    tags: ['Web Design', 'UX Research', 'Conversion'],
+  },
+  // Cybersecurity Projects
+  {
+    title: 'Security Audit Platform',
+    category: 'Security Tools',
+    workType: 'Cybersecurity',
+    image: 'https://images.unsplash.com/photo-1563986768609-322d6a6d4e25?w=800&h=600&fit=crop',
+    tags: ['Penetration Testing', 'Network Security', 'DevOps'],
+  },
+  {
+    title: 'Threat Detection System',
+    category: 'Monitoring & Analytics',
+    workType: 'Cybersecurity',
+    image: 'https://images.unsplash.com/photo-1551434786-5b89fbc2ead6?w=800&h=600&fit=crop',
+    tags: ['AI/ML', 'Data Security', 'Real-time Alerts'],
+  },
+  {
+    title: 'Enterprise VPN Solution',
+    category: 'Infrastructure Security',
+    workType: 'Cybersecurity',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop',
+    tags: ['Network', 'Encryption', 'Zero Trust'],
+  },
+  // Other Services Projects
+  {
+    title: 'AI Chatbot Development',
+    category: 'AI Services',
+    workType: 'Other',
+    image: 'https://images.unsplash.com/photo-1677442d019cecf8978ba69cac311c83b94fba30?w=800&h=600&fit=crop',
+    tags: ['GPT', 'NLP', 'Python'],
+  },
+  {
+    title: 'Cloud Migration Consulting',
+    category: 'Infrastructure',
+    workType: 'Other',
+    image: 'https://images.unsplash.com/photo-1550751827-4bd94c3f3df9?w=800&h=600&fit=crop',
+    tags: ['AWS', 'Azure', 'DevOps'],
+  },
+  {
+    title: 'Data Analytics Dashboard',
+    category: 'Business Intelligence',
+    workType: 'Other',
+    image: 'https://images.unsplash.com/photo-1553729459-d2229ba7433b?w=800&h=600&fit=crop',
+    tags: ['Data Science', 'Visualization', 'Python'],
+  },
 ];
 
-function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
+const WORK_TYPES = ['Web', 'UI/UX', 'Cybersecurity', 'Other'] as const;
+
+function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [isHovered, setIsHovered] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -155,10 +237,14 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
 }
 
 export default function Portfolio() {
+  const [selectedType, setSelectedType] = useState<typeof WORK_TYPES[number]>('Web');
+
+  const filteredProjects = projects.filter(project => project.workType === selectedType);
+
   return (
     <section id="portfolio" className="py-24 bg-secondary/30 relative overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-8">
+        <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-8">
           <motion.div
             className="max-w-2xl"
             initial={{ opacity: 0, y: 20 }}
@@ -186,11 +272,64 @@ export default function Portfolio() {
           </motion.button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <ProjectCard key={project.title} project={project} index={index} />
+        {/* Category Filter Tabs */}
+        <motion.div
+          className="flex flex-wrap gap-3 mb-12"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+        >
+          {WORK_TYPES.map((type, index) => (
+            <motion.button
+              key={type}
+              onClick={() => setSelectedType(type)}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.35 + index * 0.05 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={`px-6 py-2.5 rounded-full font-semibold transition-all duration-300 ${
+                selectedType === type
+                  ? 'bg-accent text-primary shadow-lg shadow-accent/50'
+                  : 'bg-white/10 text-white border border-white/20 hover:bg-white/15'
+              }`}
+            >
+              {type}
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
+
+        {/* Projects Grid with Animation */}
+        <motion.div
+          layout
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8"
+        >
+          <motion.div
+            key={selectedType}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="contents"
+          >
+            {filteredProjects.map((project, index) => (
+              <ProjectCard key={project.title} project={project} index={index} />
+            ))}
+          </motion.div>
+        </motion.div>
+
+        {/* Empty State */}
+        {filteredProjects.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-12"
+          >
+            <p className="text-gray-400 text-lg">No projects available in this category yet.</p>
+          </motion.div>
+        )}
       </div>
     </section>
   );
