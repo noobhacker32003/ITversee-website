@@ -2,6 +2,8 @@ import { motion, useMotionValue, useTransform, animate, useScroll, useVelocity }
 import { useEffect, useState, useRef } from 'react';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
+import TechSpaceAnimation from './TechSpaceAnimation';
+
 interface HeroProps {
   onOpenContact: () => void;
 }
@@ -28,8 +30,10 @@ export default function Hero({ onOpenContact }: HeroProps) {
 
   return (
     <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Animated Background Gradients */}
-      <div className="absolute inset-0 z-0">
+      {/* Animated Background */}
+      <TechSpaceAnimation />
+      
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <motion.div
           animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
           transition={{ duration: 8, repeat: Infinity }}
