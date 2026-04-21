@@ -10,16 +10,16 @@ const services = [
     color: 'from-blue-500 to-cyan-400',
   },
   {
-    title: 'UI/UX Design',
-    description: 'Intuitive and beautiful user experiences that convert and engage.',
-    icon: Layout,
-    color: 'from-purple-500 to-pink-400',
-  },
-  {
     title: 'Cyber Security',
     description: 'Protecting your digital assets with advanced security protocols.',
     icon: Shield,
     color: 'from-red-500 to-orange-400',
+  },
+  {
+    title: 'UI/UX Design',
+    description: 'Intuitive and beautiful user experiences that convert and engage.',
+    icon: Layout,
+    color: 'from-purple-500 to-pink-400',
   },
   {
     title: 'Automation',

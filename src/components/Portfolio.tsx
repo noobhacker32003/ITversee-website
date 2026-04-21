@@ -5,7 +5,7 @@ import { useState } from 'react';
 interface Project {
   title: string;
   category: string;
-  workType: 'Web' | 'UI/UX' | 'Cybersecurity' | 'Other';
+  workType: 'Web' | 'Cybersecurity' | 'UI/UX' | 'Other';
   image: string;
   tags: string[];
   link?: string;
@@ -113,7 +113,7 @@ const projects: Project[] = [
   },
 ];
 
-const WORK_TYPES = ['Web', 'UI/UX', 'Cybersecurity', 'Other'] as const;
+const WORK_TYPES = ['Web', 'Cybersecurity', 'UI/UX', 'Other'] as const;
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -290,11 +290,10 @@ export default function Portfolio() {
               transition={{ delay: 0.35 + index * 0.05 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-6 py-2.5 rounded-full font-semibold transition-all duration-300 ${
-                selectedType === type
+              className={`px-6 py-2.5 rounded-full font-semibold transition-all duration-300 ${selectedType === type
                   ? 'bg-accent text-primary shadow-lg shadow-accent/50'
                   : 'bg-white/10 text-white border border-white/20 hover:bg-white/15'
-              }`}
+                }`}
             >
               {type}
             </motion.button>
