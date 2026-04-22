@@ -5,11 +5,108 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ITversee</title>
+  <style>
+    /* Pre-React Loading Screen */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #0A0A0A;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    #preloader.fade-out {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .preloader-logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+      animation: preloader-pulse 2s ease-in-out infinite;
+    }
+
+    .preloader-logo span {
+      color: #00F5A0;
+    }
+
+    .preloader-spinner {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 3px solid rgba(255, 255, 255, 0.1);
+      border-top-color: #00F5A0;
+      animation: preloader-spin 0.8s linear infinite;
+      margin-bottom: 1.5rem;
+    }
+
+    .preloader-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.5);
+      letter-spacing: 0.1em;
+      animation: preloader-pulse 2s ease-in-out infinite;
+    }
+
+    .preloader-dots::after {
+      content: '';
+      animation: preloader-dots 1.5s steps(4, end) infinite;
+    }
+
+    @keyframes preloader-spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes preloader-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    @keyframes preloader-dots {
+      0% { content: ''; }
+      25% { content: '.'; }
+      50% { content: '..'; }
+      75% { content: '...'; }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Poppins:wght@800&display=swap" rel="stylesheet">
 </head>
 
 <body>
+  <!-- Pre-React Loading Screen -->
+  <div id="preloader">
+    <div class="preloader-logo">IT<span>versee</span></div>
+    <div class="preloader-spinner"></div>
+    <div class="preloader-text">Please wait<span class="preloader-dots"></span></div>
+  </div>
+
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
+  <script>
+    // Fade out and remove preloader once React app has mounted
+    const observer = new MutationObserver(() => {
+      const root = document.getElementById('root');
+      if (root && root.children.length > 0) {
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+          preloader.classList.add('fade-out');
+          setTimeout(() => preloader.remove(), 600);
+        }
+        observer.disconnect();
+      }
+    });
+    observer.observe(document.getElementById('root'), { childList: true });
+  </script>
 </body>
 
 </html>
