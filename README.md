@@ -1,58 +1,36 @@
-<div align="center">
-  <img width="800" alt="ITversee Banner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-  # ITversee Agency Portfolio
+## Getting Started
 
-  **We Build Scalable Digital Solutions**
+First, run the development server:
 
-  [Live Demo](https://itversee.vercel.app/) • [Features](#features) • [Installation](#run-locally)
-</div>
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
----
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 🚀 About The Project
-**ITversee** is a modern, high-performance digital agency portfolio. Built with React, Vite, and Tailwind CSS, it features a sleek dark-mode aesthetic with neon accents, beautiful glassmorphism UI elements, and smooth interactions that give it a premium, tech-focused feel.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-**Live Website:** [https://itversee.vercel.app/](https://itversee.vercel.app/)
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## ✨ Key Features
-- **Modern UI/UX:** High-end dark theme incorporating neon green accents and interactive elements.
-- **Fully Responsive:** Beautifully refined across all mobile, tablet, and desktop screens.
-- **Smooth Animations:** Powered by React Motion and native CSS smooth scrolling.
-- **Blazing Fast:** Built on Vite for lightning-fast development, build, and page load times.
-- **Clean Architecture:** Component-driven (`Services`, `Portfolio`, `Testimonials`, etc.) for high maintainability.
+## Learn More
 
-## 🛠️ Tech Stack
-- **Framework:** React 19 + Vite
-- **Styling:** Tailwind CSS (v4)
-- **Icons:** Lucide React
-- **Animations:** Motion (Framer Motion)
+To learn more about Next.js, take a look at the following resources:
 
-## 💻 Run Locally
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-**Prerequisites:** Ensure you have Node.js installed.
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-1. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-2. **Start the development server:**
-   ```bash
-   npm run dev
-   ```
-3. **Open the app:**
-   Navigate to `http://localhost:3000` (or whichever port Vite provides) in your browser.
+## Deploy on Vercel
 
-## 🌐 Deployment
-This project is configured right out of the box for modern hosting platforms. It is actively deployed on **Vercel**. 
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-To deploy your own version:
-1. Push the code to GitHub/GitLab.
-2. Import the project in Vercel.
-3. Configure build settings (Vite command: `npm run build`).
-4. Hit Deploy!
-
----
-<div align="center">
-  <i>Developed to perfection. Amazing Together.</i>
-</div>
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

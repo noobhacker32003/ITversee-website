@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Asheq%20mahmud%20latest/Desktop/project/itversee-agency-portfolio/app/loading.tsx"],"sourcesContent":["export default function Loading() {\n  return (\n    <div className=\"fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-primary\">\n      <div className=\"font-display text-4xl font-extrabold text-white tracking-tight mb-8 animate-pulse\">\n        IT<span className=\"text-accent\">versee</span>\n      </div>\n      <div className=\"w-12 h-12 rounded-full border-[3px] border-white/10 border-t-accent animate-spin mb-6\" />\n      <div className=\"font-sans text-sm text-white/50 tracking-widest animate-pulse\">\n        Please wait...\n      </div>\n    </div>\n  );\n}\n"],"names":["Loading","className"],"mappings":";;;;;;AAAe,SAASA;IACtB,qBACE,8OAAC;QAAIC,WAAU;;0BACb,8OAAC;gBAAIA,WAAU;;oBAAoF;kCAC/F,8OAAC;wBAAKA,WAAU;kCAAc;;;;;;;;;;;;0BAElC,8OAAC;gBAAIA,WAAU;;;;;;0BACf,8OAAC;gBAAIA,WAAU;0BAAgE;;;;;;;;;;;;AAKrF"}}]
+}
