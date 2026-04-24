@@ -1,0 +1,61 @@
+[
+  {
+    "route": "/",
+    "firstLoadUncompressedJsBytes": 734882,
+    "firstLoadChunkPaths": [
+      ".next_new\\static\\chunks\\11wy134mem3.x.js",
+      ".next_new\\static\\chunks\\0d3tkj33oycf2.js",
+      ".next_new\\static\\chunks\\0lafn~m30rnru.js",
+      ".next_new\\static\\chunks\\08udd005uon2v.js",
+      ".next_new\\static\\chunks\\0~rhzxnvbhu6c.js",
+      ".next_new\\static\\chunks\\0ayjmlp3cireb.js",
+      ".next_new\\static\\chunks\\0jo7~m_73tmpa.js",
+      ".next_new\\static\\chunks\\0wyz3fzjhpvhl.js",
+      ".next_new\\static\\chunks\\0hstpqahkt253.js",
+      ".next_new\\static\\chunks\\turbopack-14k~~7sote2go.js"
+    ]
+  },
+  {
+    "route": "/admin",
+    "firstLoadUncompressedJsBytes": 647984,
+    "firstLoadChunkPaths": [
+      ".next_new\\static\\chunks\\11wy134mem3.x.js",
+      ".next_new\\static\\chunks\\0d3tkj33oycf2.js",
+      ".next_new\\static\\chunks\\0yjqi.2lsm_fr.js",
+      ".next_new\\static\\chunks\\0ww_uam9u-~u3.js",
+      ".next_new\\static\\chunks\\0ayjmlp3cireb.js",
+      ".next_new\\static\\chunks\\0jo7~m_73tmpa.js",
+      ".next_new\\static\\chunks\\0wyz3fzjhpvhl.js",
+      ".next_new\\static\\chunks\\0hstpqahkt253.js",
+      ".next_new\\static\\chunks\\turbopack-14k~~7sote2go.js"
+    ]
+  },
+  {
+    "route": "/login",
+    "firstLoadUncompressedJsBytes": 644535,
+    "firstLoadChunkPaths": [
+      ".next_new\\static\\chunks\\11wy134mem3.x.js",
+      ".next_new\\static\\chunks\\0d3tkj33oycf2.js",
+      ".next_new\\static\\chunks\\0qk1tajqysv_x.js",
+      ".next_new\\static\\chunks\\0ww_uam9u-~u3.js",
+      ".next_new\\static\\chunks\\0ayjmlp3cireb.js",
+      ".next_new\\static\\chunks\\0jo7~m_73tmpa.js",
+      ".next_new\\static\\chunks\\0wyz3fzjhpvhl.js",
+      ".next_new\\static\\chunks\\0hstpqahkt253.js",
+      ".next_new\\static\\chunks\\turbopack-14k~~7sote2go.js"
+    ]
+  },
+  {
+    "route": "/_not-found",
+    "firstLoadUncompressedJsBytes": 517281,
+    "firstLoadChunkPaths": [
+      ".next_new\\static\\chunks\\11wy134mem3.x.js",
+      ".next_new\\static\\chunks\\0d3tkj33oycf2.js",
+      ".next_new\\static\\chunks\\0ayjmlp3cireb.js",
+      ".next_new\\static\\chunks\\0jo7~m_73tmpa.js",
+      ".next_new\\static\\chunks\\0wyz3fzjhpvhl.js",
+      ".next_new\\static\\chunks\\0hstpqahkt253.js",
+      ".next_new\\static\\chunks\\turbopack-14k~~7sote2go.js"
+    ]
+  }
+]
