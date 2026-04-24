@@ -182,7 +182,7 @@ export default function Footer() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.3 + i * 0.05 }}
-                  whileHover={{ x: 5, color: '#00F5A0' }}
+                  whileHover={{ x: 5, color: '#00CCFF' }}
                 >
                   <motion.div
                     animate={{ rotate: [0, 10, -10, 0] }}
@@ -214,7 +214,7 @@ export default function Footer() {
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
         >
-          <motion.p whileHover={{ color: '#00F5A0' }}>
+          <motion.p whileHover={{ color: '#00CCFF' }}>
             © 2025 ITversee Agency. All rights reserved.
           </motion.p>
           <div className="flex gap-8">

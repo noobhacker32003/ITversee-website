@@ -211,13 +211,13 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     >
                       <motion.label
                         className="text-[10px] font-bold uppercase tracking-widest text-gray-500 ml-1 block"
-                        animate={{ color: focusedField === 'name' ? '#00F5A0' : '#9CA3AF' }}
+                        animate={{ color: focusedField === 'name' ? '#00CCFF' : '#9CA3AF' }}
                       >
                         Full Name
                       </motion.label>
                       <div className="relative">
                         <motion.div
-                          animate={{ color: focusedField === 'name' ? '#00F5A0' : '#9CA3AF' }}
+                          animate={{ color: focusedField === 'name' ? '#00CCFF' : '#9CA3AF' }}
                           className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4"
                         >
                           <User className="w-4 h-4" />
@@ -246,13 +246,13 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     >
                       <motion.label
                         className="text-[10px] font-bold uppercase tracking-widest text-gray-500 ml-1 block"
-                        animate={{ color: focusedField === 'email' ? '#00F5A0' : '#9CA3AF' }}
+                        animate={{ color: focusedField === 'email' ? '#00CCFF' : '#9CA3AF' }}
                       >
                         Email Address
                       </motion.label>
                       <div className="relative">
                         <motion.div
-                          animate={{ color: focusedField === 'email' ? '#00F5A0' : '#9CA3AF' }}
+                          animate={{ color: focusedField === 'email' ? '#00CCFF' : '#9CA3AF' }}
                           className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4"
                         >
                           <Mail className="w-4 h-4" />
@@ -281,13 +281,13 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     >
                       <motion.label
                         className="text-[10px] font-bold uppercase tracking-widest text-gray-500 ml-1 block"
-                        animate={{ color: focusedField === 'service' ? '#00F5A0' : '#9CA3AF' }}
+                        animate={{ color: focusedField === 'service' ? '#00CCFF' : '#9CA3AF' }}
                       >
                         Service Needed
                       </motion.label>
                       <div className="relative">
                         <motion.div
-                          animate={{ color: focusedField === 'service' ? '#00F5A0' : '#9CA3AF' }}
+                          animate={{ color: focusedField === 'service' ? '#00CCFF' : '#9CA3AF' }}
                           className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4"
                         >
                           <Briefcase className="w-4 h-4" />
@@ -315,13 +315,13 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     >
                       <motion.label
                         className="text-[10px] font-bold uppercase tracking-widest text-gray-500 ml-1 block"
-                        animate={{ color: focusedField === 'message' ? '#00F5A0' : '#9CA3AF' }}
+                        animate={{ color: focusedField === 'message' ? '#00CCFF' : '#9CA3AF' }}
                       >
                         Message
                       </motion.label>
                       <div className="relative">
                         <motion.div
-                          animate={{ color: focusedField === 'message' ? '#00F5A0' : '#9CA3AF' }}
+                          animate={{ color: focusedField === 'message' ? '#00CCFF' : '#9CA3AF' }}
                           className="absolute left-4 top-3 w-4 h-4"
                         >
                           <MessageSquare className="w-4 h-4" />

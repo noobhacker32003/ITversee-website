@@ -28,7 +28,7 @@ const sendEmailNotification = async (data: {
     subject: `🚀 New Contact: ${data.service} — from ${data.name}`,
     html: `
       <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0f; border: 1px solid #1a1a2e; border-radius: 12px; overflow: hidden;">
-        <div style="background: linear-gradient(135deg, #00F5A0, #00D9F5); padding: 24px 32px;">
+        <div style="background: linear-gradient(135deg, #00CCFF, #00D9F5); padding: 24px 32px;">
           <h1 style="margin: 0; color: #0a0a0f; font-size: 22px; font-weight: 700;">New Contact Form Submission</h1>
         </div>
         <div style="padding: 32px;">
@@ -39,7 +39,7 @@ const sendEmailNotification = async (data: {
             </tr>
             <tr>
               <td style="padding: 12px 0; color: #888; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #1a1a2e;">Email</td>
-              <td style="padding: 12px 0; border-bottom: 1px solid #1a1a2e;"><a href="mailto:${data.email}" style="color: #00F5A0; text-decoration: none;">${data.email}</a></td>
+              <td style="padding: 12px 0; border-bottom: 1px solid #1a1a2e;"><a href="mailto:${data.email}" style="color: #00CCFF; text-decoration: none;">${data.email}</a></td>
             </tr>
             <tr>
               <td style="padding: 12px 0; color: #888; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #1a1a2e;">Phone</td>

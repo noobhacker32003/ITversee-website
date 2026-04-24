@@ -85,7 +85,7 @@ export default function Process() {
 
                 {/* Step Title */}
                 <motion.h3
-                  animate={{ color: activeStep === index ? '#00F5A0' : '#FFFFFF' }}
+                  animate={{ color: activeStep === index ? '#00CCFF' : '#FFFFFF' }}
                   className="text-2xl font-bold mb-4 text-center lg:text-left transition-colors"
                 >
                   {step.title}

@@ -62,7 +62,7 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
                 key={link.name}
                 href={link.href}
                 className="text-sm font-medium text-gray-400 relative group"
-                whileHover={{ color: '#00F5A0' }}
+                whileHover={{ color: '#00CCFF' }}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
@@ -135,7 +135,7 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.05 }}
-                  whileHover={{ x: 10, color: '#00F5A0' }}
+                  whileHover={{ x: 10, color: '#00CCFF' }}
                 >
                   {link.name}
                 </motion.a>

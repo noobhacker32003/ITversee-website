@@ -7,7 +7,7 @@
   
   --color-primary: #0A0A0A;
   --color-secondary: #111827;
-  --color-accent: #00F5A0;
+  --color-accent: #00CCFF;
   --color-accent-secondary: #4F46E5;
 }
 
@@ -33,11 +33,11 @@
 }
 
 .neon-glow {
-  box-shadow: 0 0 20px rgba(0, 245, 160, 0.3);
+  box-shadow: 0 0 20px rgba(0, 204, 255, 0.3);
 }
 
 .neon-text {
-  text-shadow: 0 0 10px rgba(0, 245, 160, 0.5);
+  text-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
 }
 
 @keyframes float {
