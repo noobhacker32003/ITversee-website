@@ -53,21 +53,21 @@ const projects: Project[] = [
     title: 'SaaS Dashboard Design',
     category: 'Product Design',
     workType: 'UI/UX',
-    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop',
+    image: '/saas.jpg',
     tags: ['Figma', 'User Research', 'Prototyping'],
   },
   {
     title: 'Mobile App Interface',
     category: 'Mobile Design',
     workType: 'UI/UX',
-    image: 'https://images.unsplash.com/photo-1561565021-8f11f29e74c7?w=800&h=600&fit=crop',
+    image: '/mobile-app.jpg',
     tags: ['UI Design', 'Animation', 'Accessibility'],
   },
   {
     title: 'E-Commerce Website Redesign',
     category: 'Web Design',
     workType: 'UI/UX',
-    image: 'https://images.unsplash.com/photo-1561050503-140f4e95f5e7?w=800&h=600&fit=crop',
+    image: '/landing.jpg',
     tags: ['Web Design', 'UX Research', 'Conversion'],
   },
   // Cybersecurity Projects
@@ -97,21 +97,21 @@ const projects: Project[] = [
     title: 'AI Chatbot Development',
     category: 'AI Services',
     workType: 'Other',
-    image: 'https://images.unsplash.com/photo-1677442d019cecf8978ba69cac311c83b94fba30?w=800&h=600&fit=crop',
+    image: '/ai-bot.jpg',
     tags: ['GPT', 'NLP', 'Python'],
   },
   {
     title: 'Cloud Migration Consulting',
     category: 'Infrastructure',
     workType: 'Other',
-    image: 'https://images.unsplash.com/photo-1550751827-4bd94c3f3df9?w=800&h=600&fit=crop',
+    image: '/cloud.jpg',
     tags: ['AWS', 'Azure', 'DevOps'],
   },
   {
     title: 'Data Analytics Dashboard',
     category: 'Business Intelligence',
     workType: 'Other',
-    image: 'https://images.unsplash.com/photo-1553729459-d2229ba7433b?w=800&h=600&fit=crop',
+    image: '/data-analytics.jpg',
     tags: ['Data Science', 'Visualization', 'Python'],
   },
 ];
@@ -301,8 +301,8 @@ export default function Portfolio() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className={`px-6 py-2.5 rounded-full font-semibold transition-all duration-300 ${selectedType === type
-                  ? 'bg-accent text-primary shadow-lg shadow-accent/50'
-                  : 'bg-white/10 text-white border border-white/20 hover:bg-white/15'
+                ? 'bg-accent text-primary shadow-lg shadow-accent/50'
+                : 'bg-white/10 text-white border border-white/20 hover:bg-white/15'
                 }`}
             >
               {type}

@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'motion/react';
 import { Code, Layout, Shield, Cpu, Share2, Smartphone, X, CheckCircle2 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, memo } from 'react';
 
 type ServiceItem = {
   title: string;
@@ -108,7 +108,6 @@ const services: ServiceItem[] = [
 ];
 
 export default function Services() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
 
   const containerVariants = {
@@ -161,65 +160,13 @@ export default function Services() {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {services.map((service, index) => (
-            <motion.div
+          {services.map((service) => (
+            <ServiceCard 
               key={service.title}
-              variants={itemVariants}
-              transition={{ duration: 0.6 }}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              onClick={() => setSelectedService(service)}
-              whileHover={{ y: -8 }}
-              className="group relative p-8 glass rounded-3xl glass-hover overflow-hidden transition-all duration-300 cursor-pointer"
-            >
-              {/* Animated Background Gradient */}
-              <motion.div
-                className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${service.color} blur-3xl`}
-                animate={{ opacity: hoveredIndex === index ? 0.15 : 0.05 }}
-                transition={{ duration: 0.3 }}
-              />
-
-              {/* Top Accent Line */}
-              <motion.div
-                className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent to-transparent"
-                animate={{ opacity: hoveredIndex === index ? 0.8 : 0.2 }}
-                transition={{ duration: 0.3 }}
-              />
-
-              {/* Icon Container */}
-              <motion.div
-                animate={{
-                  scale: hoveredIndex === index ? 1.15 : 1,
-                  rotate: hoveredIndex === index ? 10 : 0,
-                }}
-                transition={{ duration: 0.3 }}
-                className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-6 relative z-10"
-              >
-                <motion.div
-                  animate={{ rotate: hoveredIndex === index ? 360 : 0 }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <service.icon className="w-8 h-8 text-accent" />
-                </motion.div>
-              </motion.div>
-
-              <motion.h3
-                animate={{ color: hoveredIndex === index ? '#00CCFF' : '#FFFFFF' }}
-                className="text-2xl font-bold mb-4 relative z-10 transition-colors"
-              >
-                {service.title}
-              </motion.h3>
-              <p className="text-gray-400 leading-relaxed relative z-10">
-                {service.description}
-              </p>
-
-              {/* Hover Indicator Dot */}
-              <motion.div
-                className="absolute bottom-4 right-4 w-2 h-2 bg-accent rounded-full"
-                animate={{ scale: hoveredIndex === index ? 1 : 0 }}
-                transition={{ duration: 0.3 }}
-              />
-            </motion.div>
+              service={service}
+              itemVariants={itemVariants}
+              onSelect={setSelectedService}
+            />
           ))}
         </motion.div>
       </div>
@@ -301,3 +248,75 @@ export default function Services() {
     </section>
   );
 }
+
+const ServiceCard = memo(function ServiceCard({
+  service,
+  itemVariants,
+  onSelect
+}: {
+  service: ServiceItem,
+  itemVariants: any,
+  onSelect: (service: ServiceItem) => void
+}) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <motion.div
+      variants={itemVariants}
+      transition={{ duration: 0.6 }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={() => onSelect(service)}
+      whileHover={{ y: -8 }}
+      className="group relative p-8 glass rounded-3xl glass-hover overflow-hidden transition-all duration-300 cursor-pointer"
+    >
+      {/* Animated Background Gradient */}
+      <motion.div
+        className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${service.color} blur-3xl`}
+        animate={{ opacity: isHovered ? 0.15 : 0.05 }}
+        transition={{ duration: 0.3 }}
+      />
+
+      {/* Top Accent Line */}
+      <motion.div
+        className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent to-transparent"
+        animate={{ opacity: isHovered ? 0.8 : 0.2 }}
+        transition={{ duration: 0.3 }}
+      />
+
+      {/* Icon Container */}
+      <motion.div
+        animate={{
+          scale: isHovered ? 1.15 : 1,
+          rotate: isHovered ? 10 : 0,
+        }}
+        transition={{ duration: 0.3 }}
+        className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-6 relative z-10"
+      >
+        <motion.div
+          animate={{ rotate: isHovered ? 360 : 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <service.icon className="w-8 h-8 text-accent" />
+        </motion.div>
+      </motion.div>
+
+      <motion.h3
+        animate={{ color: isHovered ? '#00CCFF' : '#FFFFFF' }}
+        className="text-2xl font-bold mb-4 relative z-10 transition-colors"
+      >
+        {service.title}
+      </motion.h3>
+      <p className="text-gray-400 leading-relaxed relative z-10">
+        {service.description}
+      </p>
+
+      {/* Hover Indicator Dot */}
+      <motion.div
+        className="absolute bottom-4 right-4 w-2 h-2 bg-accent rounded-full"
+        animate={{ scale: isHovered ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
+      />
+    </motion.div>
+  );
+});

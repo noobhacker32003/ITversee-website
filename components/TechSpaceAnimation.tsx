@@ -6,7 +6,7 @@ import React, { useMemo } from "react";
 export default function TechSpaceAnimation() {
   const stars = useMemo(
     () =>
-      Array.from({ length: 40 }, (_, i) => ({
+      Array.from({ length: 25 }, (_, i) => ({
         id: i,
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
@@ -20,7 +20,7 @@ export default function TechSpaceAnimation() {
 
   const nodes = useMemo(
     () =>
-      Array.from({ length: 8 }, (_, i) => ({
+      Array.from({ length: 5 }, (_, i) => ({
         id: i,
         left: `${8 + Math.random() * 84}%`,
         top: `${10 + Math.random() * 70}%`,
@@ -227,7 +227,7 @@ export default function TechSpaceAnimation() {
         {nodes.map((node) => (
           <div
             key={node.id}
-            className="absolute rounded-md border border-cyan-200/30 bg-cyan-300/10 backdrop-blur-sm"
+            className="absolute rounded-md border border-cyan-200/30 bg-cyan-300/10"
             style={{
               left: node.left,
               top: node.top,
