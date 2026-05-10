@@ -72,25 +72,53 @@ const projects: Project[] = [
   },
   // Cybersecurity Projects
   {
-    title: 'Security Audit Platform',
-    category: 'Security Tools',
+    title: 'Website & web application security audits',
+    category: 'Security Audits',
     workType: 'Cybersecurity',
-    image: 'https://images.unsplash.com/photo-1563986768609-322d6a6d4e25?w=800&h=600&fit=crop',
-    tags: ['Penetration Testing', 'Network Security', 'DevOps'],
+    image: '/feature/Website-Security-Audit-Service.webp',
+    tags: ['Web App', 'Security', 'Audit'],
   },
   {
-    title: 'Threat Detection System',
-    category: 'Monitoring & Analytics',
+    title: 'GDPR and UK GDPR compliance checks',
+    category: 'Compliance',
     workType: 'Cybersecurity',
-    image: 'https://images.unsplash.com/photo-1551434786-5b89fbc2ead6?w=800&h=600&fit=crop',
-    tags: ['AI/ML', 'Data Security', 'Real-time Alerts'],
+    image: '/feature/gdpr-compliant-compliance-general-data-260nw-2501566973.webp',
+    tags: ['GDPR', 'Compliance', 'Privacy'],
   },
   {
-    title: 'Enterprise VPN Solution',
-    category: 'Infrastructure Security',
+    title: 'Phishing simulation and employee training',
+    category: 'Training',
     workType: 'Cybersecurity',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop',
-    tags: ['Network', 'Encryption', 'Zero Trust'],
+    image: '/feature/Phishing-Awareness-Training-for-Employees-scaled.jpg',
+    tags: ['Phishing', 'Training', 'Awareness'],
+  },
+  {
+    title: 'Dark web monitoring and credential exposure alerts',
+    category: 'Monitoring',
+    workType: 'Cybersecurity',
+    image: '/feature/Dark-Web-Monitoring-Banner-Image.jpg.webp',
+    tags: ['Dark Web', 'Alerts', 'Credentials'],
+  },
+  {
+    title: 'Cyber Essentials certification support',
+    category: 'Certification',
+    workType: 'Cybersecurity',
+    image: '/feature/Cyber Essentials certification support.png',
+    tags: ['Certification', 'Support', 'Cyber Essentials'],
+  },
+  {
+    title: 'Vulnerability assessment and penetration testing',
+    category: 'Testing',
+    workType: 'Cybersecurity',
+    image: '/feature/Vulnerability assessment and penetration testing.jpg',
+    tags: ['VAPT', 'Penetration Testing', 'Assessment'],
+  },
+  {
+    title: 'Incident response planning and simulation',
+    category: 'Planning',
+    workType: 'Cybersecurity',
+    image: '/feature/Incident response planning and simulation.jpg',
+    tags: ['Incident Response', 'Simulation', 'Planning'],
   },
   // Other Services Projects
   {
@@ -158,7 +186,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             src={project.image}
             alt={project.title}
             fill
-            className="object-cover"
+            className="object-contain p-4 bg-primary"
             loading="lazy"
             quality={100}
             sizes="(max-width: 768px) 100vw, 50vw"
